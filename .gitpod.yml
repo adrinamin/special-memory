@@ -2,10 +2,13 @@
 tasks:
   - name: Download and run MSSQL container
     init: |
-      docker-compose up
-  - name: Execute the container
-    init: |
-      docker exec -it localhost "bash"
+      (
+        docker-compose up -d
+        docker exec -it mssql "bash"
+      )
+  # - name: Execute the container
+  #   init: |
+  #     docker exec -it localhost "bash"
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 # ports:
@@ -17,6 +20,6 @@ tasks:
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 
-vscode:
-  extensions:
-    - ms-mssql.mssql
+# vscode:
+#   extensions:
+#     - ms-mssql.mssql
