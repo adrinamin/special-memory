@@ -6,7 +6,7 @@ services:
     container_name: mssql
     environment:
       ACCEPT_EULA: Y
-      MSSQL_SA_PASSWORD: "admin"
+      MSSQL_SA_PASSWORD: "Super@Admin123"
     ports:
       - "1433:1433"
     networks:
