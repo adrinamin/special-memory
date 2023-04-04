@@ -1,0 +1,25 @@
+
+tasks:
+  - name: Pull and run SQL image
+    before: |
+      (
+        sudo docker pull mcr.microsoft.com/mssql/server:2022-latest
+        docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<admin>" -p 1433:1433 --name localhost --hostname localhost -d mcr.microsoft.com/mssql/server:2022-latest
+      )
+  - name: Script Task
+    init: echo 'init script' # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
+    command: echo 'start script'
+
+# List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
+# ports:
+#   - name: Frontend
+#     description: Port 3000 for the frontend
+#     port: 3000
+#     onOpen: open-preview
+
+# Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
+
+
+vscode:
+  extensions:
+    - ms-mssql.mssql
