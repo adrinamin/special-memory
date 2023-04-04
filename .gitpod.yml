@@ -5,6 +5,7 @@ tasks:
       (
         docker-compose up -d
         docker exec -it mssql "bash"
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "Super@Admin123"
       )
   # - name: Execute the container
   #   init: |
