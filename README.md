@@ -10,6 +10,9 @@ sqlcmd -S localhost -U SA -P "Super@Admin123"
 # for runing a script:
 # check with ls -alh if the seed.sql script is in the root directory of the container.
 ls -alh
-sqlcmd -S localhost -U SA -P "Super@Admin123" -d onlineStoreDb -i seed.sql
+sqlcmd -S localhost -U SA -P "Super@Admin123" -i seed.sql # optionally with the database -d onlineStoreDb
+
+# or you can run the seed.sh script from outside of the container
+docker exec -it mssql "bash" seed.sh
  
 ```

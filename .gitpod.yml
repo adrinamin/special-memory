@@ -5,6 +5,7 @@ tasks:
       (
         docker-compose up -d
         docker cp sample_data/seed.sql mssql:/
+        docker cp sample_data/seed.sh mssql:/
         docker exec -it mssql "bash"
       )
   # - name: Execute the container
