@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  web-api:
+    build:
+      context: ./src/web-api/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    container_name: web-api
+    # environment:
+    #   DB_HOST: db
+    #   DB_PORT: 1433
+    #   DB_USER: myuser
+    #   DB_PASSWORD: mypassword
+    #   DB_NAME: mydb
+    depends_on:
+      - mssql
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: mssql
