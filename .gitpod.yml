@@ -1,5 +1,23 @@
 
 tasks:
+  - name: Copy requirements.txt content
+    before:  |
+      (
+        cp requirements.txt src/web-api/app_requirements.txt
+      )
+  - name: Install python dependencies and run dev server
+    init: |
+      (
+        set -e
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt
+      )
+    command: |
+      (
+        set -e
+        cd src/web-api/app/
+        uvicorn main:web_api --reload
+      )
   - name: Download and run MSSQL container
     init: |
       (

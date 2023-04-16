@@ -1,7 +1,8 @@
 import pymssql
-from flask import Flask, jsonify
+from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
 
-app = Flask(__name__)
+web_api = FastAPI()
 
 # Database configuration
 db_config = {
@@ -11,13 +12,12 @@ db_config = {
     'database': 'onlineStoreDb'
 }
 
-# API endpoint to retrieve data
-@app.route('/data', methods=['GET'])
-def get_data():
+@web_api.get("/")
+async def root():
     # Connect to database
     conn = pymssql.connect(**db_config)
     cursor = conn.cursor()
-
+    
     # Execute SQL query to retrieve data
     query = "SELECT * FROM products"
     cursor.execute(query)
@@ -27,7 +27,5 @@ def get_data():
     conn.close()
 
     # Return data as JSON response
-    return jsonify({'data': data})
+    return jsonable_encoder(data)
 
-if __name__ == '__main__':
-    app.run()

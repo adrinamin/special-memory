@@ -1,12 +1,12 @@
 FROM python:3.11-slim-buster
 
-WORKDIR /app
+WORKDIR /code
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./app_requirements.txt /code/requirements.txt
 
-COPY . .
+COPY app_requirements.txt .
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-EXPOSE 5000
+COPY ./app /code/app
 
-CMD [ "python", "./app.py" ]
+CMD ["uvicorn", "app.main:web_api", "--host", "0.0.0.0", "--port", "80"]
