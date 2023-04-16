@@ -1,18 +1,24 @@
 # special-memory
-Testing environment for databases
 
-When connecting to the db server
+This repository is just my personal playground for working with sql server.
+If you find something useful in it, you can use it of course.
+
+When connecting to the db server and starting the interactive sql session:
 ```bash
-# for easier use of sqlcmd
+# for easier use of sqlcmd, otherwise the full path is necessary: /opt/mssql-tools/bin/sqlcmd
 export PATH="/opt/mssql-tools/bin:$PATH"
+# starting interactive mode of sql server
 sqlcmd -S localhost -U SA -P "Super@Admin123"
-# otherwise the full path is necessary: /opt/mssql-tools/bin/sqlcmd
-# for runing a script:
-# check with ls -alh if the seed.sql script is in the root directory of the container.
-ls -alh
-sqlcmd -S localhost -U SA -P "Super@Admin123" -i seed.sql # optionally with the database -d onlineStoreDb
-
-# or you can run the seed.sh script from outside of the container
-docker exec -it mssql "bash" seed.sh
- 
 ```
+Or, just seeding the database:
+```bash
+export PATH="/opt/mssql-tools/bin:$PATH"
+sqlcmd -S localhost -U SA -P "Super@Admin123" -i seed.sql # optionally with the database -d onlineStoreDb
+```
+
+You can also run the seed.sh script from outside the container if you don't want to exec into the container.
+```bash
+docker exec -it mssql "bash" seed.sh
+```
+
+If you have any ideas for extension or to make it even better, just let me know :).
