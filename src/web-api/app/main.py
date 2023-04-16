@@ -1,3 +1,4 @@
+import os
 import pymssql
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
@@ -6,10 +7,10 @@ web_api = FastAPI()
 
 # Database configuration
 db_config = {
-    'host': 'localhost',
-    'user': 'sa',
-    'password': 'Super@Admin123',
-    'database': 'onlineStoreDb'
+    'host': os.environ['DB_HOST'],
+    'user': os.environ['DB_USER'],
+    'password': os.environ['DB_PASSWORD'],
+    'database': os.environ['DB_NAME']
 }
 
 @web_api.get("/products")

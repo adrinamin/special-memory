@@ -14,6 +14,12 @@
                 "--reload"
             ],
             "cwd": "${workspaceFolder}/src/web-api/app",
+            "env": {
+                "DB_HOST": "localhost",
+                "DB_USER": "sa",
+                "DB_PASSWORD": "Super@Admin123",
+                "DB_NAME": "onlineStoreDb"
+            },
             "jinja": true,
             "justMyCode": true
         }
