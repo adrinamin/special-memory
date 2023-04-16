@@ -26,6 +26,11 @@ tasks:
         docker cp sample_data/seed.sh mssql:/
         docker exec -it mssql "bash"
       )
+  - name: setup frontend
+    init: |
+      (
+        npm install -g @angular/cli
+      )
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
@@ -36,6 +41,10 @@ ports:
   - name: web_api (Docker)
     description: The port of the docker container
     port: 80
+    onOpen: open-preview
+  - name: frontend
+    description: The port of the angular UI
+    port: 4200
     onOpen: open-preview
 
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
